@@ -1,13 +1,13 @@
-export default class Observer {
-    constructor(){
-        this.subscribers = [];
-    }
+// export default class Observer {
+//     constructor(){
+//         this.subscribers = [];
+//     }
 
-    subscribe(...fn) {
-        fn.forEach(fn => this.subscribers.push(fn));
-    }
+//     subscribe(...fn) {
+//         fn.forEach(fn => this.subscribers.push(fn));
+//     }
 
-    run(data) {
-        this.subscribers.forEach(fn => fn(data));
-    }
-}
+//     run(data) {
+//         this.subscribers.forEach(fn => fn(data));
+//     }
+// }
