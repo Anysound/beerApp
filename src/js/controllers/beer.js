@@ -25,11 +25,9 @@ export default class BeerController {
     })
 
     this._beerComponent.addBeerToFavoritesHandler((evt) => {
-      
       const title = this._beerComponent.getElement().querySelector('.card-title').textContent;
       const id = this._beerComponent.getElement().querySelector('button[data-favorites]').value;
       const favoriteBeer = new FavoriteBeer(title, id);
-
       const element = favoriteBeer.getElement();
 
       const removeFavBeer = () => {
@@ -39,13 +37,12 @@ export default class BeerController {
         delete localStorage.getItem(id);
       }
 
-      const checkFavsDuplicate = (evt) => {
+      const checkFavsDuplicate = () => {
         const favChildren = Array.from(favBasket.children);
-        console.log(favChildren);
         favChildren.forEach((it) => {
           if (it.innerText === title) {
             it.remove();
-            removeFavBeer(evt)
+            removeFavBeer()
           }
         })
       }
@@ -53,20 +50,18 @@ export default class BeerController {
       favoriteBeer.removeFromFavoritesHandler(removeFavBeer);
       const favBasket = document.querySelector('#favorites');
 
-    //  debugger;
+      // если пиво добавляется в избранное в первый раз
       if (!this.clickedBtn) {
         evt.preventDefault();
         this.clickedBtn = true;
-  
-        // Добавление в локал сторедж
-        
-        
   
         // проверка контейнера фаворитов на наличие дублей
         checkFavsDuplicate();
   
         favBasket.append(element);
-  
+        const deleteFavsBtn = document.querySelector('#clear_favorites');
+        deleteFavsBtn.style.display = 'block';
+        favBasket.insertAdjacentElement('afterend', deleteFavsBtn);
         const addToLocalStorage = () => {
           const id = this._beerComponent.getElement().querySelector('button[data-favorites]').getAttribute('data-favorites');
           const template = JSON.stringify(favoriteBeer.getTemplate());
@@ -81,7 +76,6 @@ export default class BeerController {
         // проверка контейнера фаворитов на наличие дублей
         checkFavsDuplicate();
       }
-
     });
   }
 }
