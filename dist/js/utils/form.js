@@ -20,6 +20,11 @@ export const validateForm = () => {
     form.style.display = 'none';
   });
 
+  const leftCloseBtn = form.querySelector('.mt-3 button[data-modal=close]');
+  console.log(leftCloseBtn)
+  leftCloseBtn.addEventListener('click', () => {
+    form.style.display = 'none';
+  })
   // валидация формы
   // проверка отдельных полей на валидность
   const phoneContainer = document.querySelector('.form-group .container:first-child');
