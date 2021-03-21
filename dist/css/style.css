@@ -35,10 +35,6 @@
   z-index: 2;
 }
 
-.buttons__left {
-  visibility: hidden;
-}
-
 .buttons__right {
   right: 0;
 }
